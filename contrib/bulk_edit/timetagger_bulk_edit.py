@@ -74,6 +74,7 @@ import logging
 import os
 import pathlib
 import time
+import binascii
 
 from timetagger.server._utils import user2filename, filename2user, ROOT_USER_DIR
 
@@ -286,7 +287,7 @@ class Records(BulkEditor):
                             hour=23, minute=59, second=59, microsecond=999999
                         )
                     return int(dt.timestamp())
-                except ValueError as e:
+                except ValueError:
                     return time_string
 
     def delete_records_in_range(self, from_unix_timestamp, to_unix_timestamp):
